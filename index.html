@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para vos</title>
+<meta name="description" content="Un regalo hecho con cariño.">
+<meta name="theme-color" content="#231b4d">
+<meta name="robots" content="noindex, nofollow">
+<script>try{if(localStorage.getItem("ani:entrada")==="true"||/[?&]preview/.test(location.search))document.documentElement.classList.add("ya")}catch(e){}</script>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="img/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bloqueado">
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- Cielo fijo: cambia con el scroll (atardecer → noche) -->
+<div id="cielo" aria-hidden="true">
+  <div class="cielo-noche"></div>
+  <div class="cielo-estrellas"></div>
+  <div class="cielo-sol"></div>
+</div>
+
+<!-- ===================== PUERTA (sobre con fecha) ===================== -->
+<section id="puerta" aria-labelledby="puertaTitulo">
+  <div class="puerta-caja">
+    <h1 id="puertaTitulo">Hay algo para vos</h1>
+    <div class="sobre" id="sobre" aria-hidden="true">
+      <div class="sobre-carta"><span>♡</span></div>
+      <div class="sobre-frente"></div>
+      <div class="sobre-solapa"></div>
+      <div class="sello">♥</div>
+    </div>
+    <p class="puerta-fecha">Es un regalo para vos</p>
+    <button class="btn" id="btnAbrir" type="button">Abrir</button>
+    <p id="puertaMsg" class="puerta-msg" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+<nav id="nav" aria-label="Secciones">
+  <a href="#inicio">Inicio</a>
+  <a href="#cartas">Cartitas</a>
+  <a href="#album">Álbum</a>
+  <a href="#razones">Razones</a>
+  <a href="#juegos">Juegos</a>
+  <a href="#cupones">Cupones</a>
+  <a href="#final">Sorpresa</a>
+</nav>
+
+<button id="btnMusica" class="btn-musica" type="button" aria-label="Activar música" hidden>♪</button>
+
+<main id="contenido">
+
+  <!-- ===================== INICIO ===================== -->
+  <header id="inicio" class="hero">
+    <div class="hero-texto">
+      <p class="hero-desde" id="heroDesde"></p>
+      <h2 class="hero-titulo">Para vos,<br><span id="heroNombre"></span></h2>
+      <p class="hero-lead" id="heroLead"></p>
+            <a class="btn btn-claro" href="#cartas">Empezar</a>
+    </div>
+    <figure class="hero-arco">
+      <img src="img/thumbs/foto6.jpg" alt="Nosotros dos al atardecer, con el cielo de fondo" fetchpriority="high">
+    </figure>
+  </header>
+
+  <!-- ===================== CARTITAS ===================== -->
+  <section id="cartas" class="seccion" aria-labelledby="tCartas">
+    <div class="seccion-cab">
+      <h2 id="tCartas">Cartitas</h2>
+      <p>Son cortas, prometido. Abrí cada una cuando la necesites, o todas juntas, yo no miro.</p>
+    </div>
+    <ul class="sobres" id="sobresLista"></ul>
+    <div class="seccion-pie">
+      <p id="cartasContador"></p>
+      <button class="btn btn-claro" id="cartaAzar" type="button">Sorprendeme con una</button>
+    </div>
+  </section>
+
+  <!-- ===================== ÁLBUM ===================== -->
+  <section id="album" class="seccion" aria-labelledby="tAlbum">
+    <div class="seccion-cab">
+      <h2 id="tAlbum">Nuestro álbum</h2>
+      <p>Tocá una foto para darla vuelta. Atrás hay algo escrito.</p>
+    </div>
+    <div class="polaroids" id="polaroids"></div>
+  </section>
+
+  <!-- ===================== RAZONES ===================== -->
+  <section id="razones" class="seccion seccion-centrada" aria-labelledby="tRazones">
+    <div class="seccion-cab">
+      <h2 id="tRazones">Razones</h2>
+    </div>
+    <div class="razon-card">
+      <p class="razon-num" id="razonNum"></p>
+      <p class="razon-texto" id="razonTexto" aria-live="polite"></p>
+    </div>
+    <button class="btn btn-claro" id="otraRazon" type="button">Otra razón</button>
+  </section>
+
+  <!-- ===================== JUEGOS ===================== -->
+  <section id="juegos" class="seccion" aria-labelledby="tJuegos">
+    <div class="seccion-cab">
+      <h2 id="tJuegos">Zona de juegos</h2>
+      <p>Porque no todo tiene que ser serio. Elegí uno.</p>
+    </div>
+    <ul class="juegos-lista" id="juegosLista"></ul>
+  </section>
+
+  <!-- ===================== CUPONES ===================== -->
+  <section id="cupones" class="seccion" aria-labelledby="tCupones">
+    <div class="seccion-cab">
+      <h2 id="tCupones">Cupones</h2>
+      <p>Rascá con el dedo para descubrir cada uno. Son válidos para siempre y se canjean conmigo.</p>
+    </div>
+    <div class="cupones" id="cuponesLista"></div>
+  </section>
+
+  <!-- ===================== FINAL ===================== -->
+  <section id="final" class="seccion seccion-centrada" aria-labelledby="tFinal">
+    <h2 id="tFinal" class="final-pregunta"></h2>
+    <div class="final-botones" id="finalBotones">
+      <button class="btn btn-si" id="btnSi" type="button"></button>
+      <button class="btn btn-no" id="btnNo" type="button"></button>
+    </div>
+    <div class="final-respuesta" id="finalRespuesta" hidden>
+      <p id="finalTexto"></p>
+      <a class="btn btn-claro" id="finalWA" target="_blank" rel="noopener">Contame que dijiste que sí</a>
+    </div>
+  </section>
+
+  <!-- ===================== ESCRIBIME ===================== -->
+  <section id="escribime" class="seccion" aria-labelledby="tEscribime">
+    <div class="seccion-cab">
+      <h2 id="tEscribime">Ahora te toca a vos</h2>
+      <p>Escribime lo que quieras: un chiste, un recuerdo, un reclamo. Llega directo a mi WhatsApp.</p>
+    </div>
+    <form class="escribir" id="formEscribir">
+      <label for="miMensaje" class="sr">Tu mensaje</label>
+      <textarea id="miMensaje" rows="4" maxlength="500" placeholder="Escribí acá…"></textarea>
+      <button class="btn btn-claro" type="submit">Enviar a WhatsApp</button>
+    </form>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <p>Hecho con cariño, a mano y sin dominio.</p>
+  <button id="corazonSecreto" class="corazon-secreto" type="button" aria-label="Corazón">♥</button>
+</footer>
+
+<!-- Ventana reutilizable para juegos, cartas y fotos -->
+<dialog id="ventana" class="ventana" aria-labelledby="ventanaTitulo">
+  <div class="ventana-hoja">
+    <header class="ventana-cab">
+      <h3 id="ventanaTitulo"></h3>
+      <button id="ventanaCerrar" class="ventana-cerrar" type="button" aria-label="Cerrar">✕</button>
+    </header>
+    <div class="ventana-cuerpo" id="ventanaCuerpo"></div>
+  </div>
+</dialog>
+
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/games.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
